@@ -55,7 +55,7 @@ void Game::Update() {
 
             if (players[static_cast<std::size_t>(turn)].pos.x > 0) {
 
-                if (CaseHasPlayer<4>(Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-1), players[static_cast<std::size_t>(turn)].pos.y}, players) && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-2), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
+                if (CaseHasPlayer(Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-1), players[static_cast<std::size_t>(turn)].pos.y}, players) && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-2), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
 
                     if (players[static_cast<std::size_t>(turn)].pos.x-1 > 0 && AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*(players[static_cast<std::size_t>(turn)].pos.x-2), Screen::height/9*players[static_cast<std::size_t>(turn)].pos.y, Screen::width/9, Screen::height/9})) {
 
@@ -69,7 +69,7 @@ void Game::Update() {
 
                 } else {
 
-                    if (AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*(players[static_cast<std::size_t>(turn)].pos.x-1), Screen::height/9*players[static_cast<std::size_t>(turn)].pos.y, Screen::width/9, Screen::height/9}) && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-1), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
+                    if (AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*(players[static_cast<std::size_t>(turn)].pos.x-1), Screen::height/9*players[static_cast<std::size_t>(turn)].pos.y, Screen::width/9, Screen::height/9}) && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-1), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
             
                         players[static_cast<std::size_t>(turn)].pos.x--;
                         if (turn == Turn::P1) turn = Turn::P2; else turn = Turn::P1;
@@ -85,7 +85,7 @@ void Game::Update() {
 
             if (players[static_cast<std::size_t>(turn)].pos.x < 9) {
 
-                if (CaseHasPlayer<4>(Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+1), players[static_cast<std::size_t>(turn)].pos.y}, players) && players[static_cast<std::size_t>(turn)].pos.x+1 < 9 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+2), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
+                if (CaseHasPlayer(Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+1), players[static_cast<std::size_t>(turn)].pos.y}, players) && players[static_cast<std::size_t>(turn)].pos.x+1 < 9 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+2), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
 
                     if (players[static_cast<std::size_t>(turn)].pos.x+1 < 9 && AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*(players[static_cast<std::size_t>(turn)].pos.x+2), Screen::height/9*players[static_cast<std::size_t>(turn)].pos.y, Screen::width/9, Screen::height/9})) {
 
@@ -99,7 +99,7 @@ void Game::Update() {
 
                 } else {
 
-                    if (AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*(players[static_cast<std::size_t>(turn)].pos.x+1), Screen::height/9*players[static_cast<std::size_t>(turn)].pos.y, Screen::width/9, Screen::height/9}) && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+1), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
+                    if (AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*(players[static_cast<std::size_t>(turn)].pos.x+1), Screen::height/9*players[static_cast<std::size_t>(turn)].pos.y, Screen::width/9, Screen::height/9}) && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+1), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
             
                         players[static_cast<std::size_t>(turn)].pos.x++;
                         if (turn == Turn::P1) turn = Turn::P2; else turn = Turn::P1;
@@ -115,7 +115,7 @@ void Game::Update() {
 
             if (players[static_cast<std::size_t>(turn)].pos.y > 0) {
 
-                if (CaseHasPlayer<4>(Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-1)}, players) && players[static_cast<std::size_t>(turn)].pos.y-1 > 0 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-2)}, barriers)) {
+                if (CaseHasPlayer(Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-1)}, players) && players[static_cast<std::size_t>(turn)].pos.y-1 > 0 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-2)}, barriers)) {
 
                     if (players[static_cast<std::size_t>(turn)].pos.y-1 > 0 && AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*players[static_cast<std::size_t>(turn)].pos.x, Screen::height/9*(players[static_cast<std::size_t>(turn)].pos.y-2), Screen::width/9, Screen::height/9})) {
 
@@ -129,7 +129,7 @@ void Game::Update() {
 
                 } else {
 
-                    if (AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*players[static_cast<std::size_t>(turn)].pos.x, Screen::height/9*(players[static_cast<std::size_t>(turn)].pos.y-1), Screen::width/9, Screen::height/9}) && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-1)}, barriers)) {
+                    if (AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*players[static_cast<std::size_t>(turn)].pos.x, Screen::height/9*(players[static_cast<std::size_t>(turn)].pos.y-1), Screen::width/9, Screen::height/9}) && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-1)}, barriers)) {
             
                         players[static_cast<std::size_t>(turn)].pos.y--;
                         if (turn == Turn::P1) turn = Turn::P2; else turn = Turn::P1;
@@ -145,7 +145,7 @@ void Game::Update() {
 
             if (players[static_cast<std::size_t>(turn)].pos.y < 9) {
 
-                if (CaseHasPlayer<4>(Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+1)}, players) && players[static_cast<std::size_t>(turn)].pos.y+1 < 9 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+2)}, barriers)) {
+                if (CaseHasPlayer(Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+1)}, players) && players[static_cast<std::size_t>(turn)].pos.y+1 < 9 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+2)}, barriers)) {
 
                     if (players[static_cast<std::size_t>(turn)].pos.y+1 < 9 && AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*players[static_cast<std::size_t>(turn)].pos.x, Screen::height/9*(players[static_cast<std::size_t>(turn)].pos.y+2), Screen::width/9, Screen::height/9})) {
 
@@ -159,7 +159,7 @@ void Game::Update() {
 
                 } else {
 
-                    if (AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*players[static_cast<std::size_t>(turn)].pos.x, Screen::height/9*(players[static_cast<std::size_t>(turn)].pos.y+1), Screen::width/9, Screen::height/9}) && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+1)}, barriers)) {
+                    if (AABB(SDL_Rect{commands.mousePos[0], commands.mousePos[1], 1, 1}, SDL_Rect{Screen::width/9*players[static_cast<std::size_t>(turn)].pos.x, Screen::height/9*(players[static_cast<std::size_t>(turn)].pos.y+1), Screen::width/9, Screen::height/9}) && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+1)}, barriers)) {
             
                         players[static_cast<std::size_t>(turn)].pos.y++;
                         if (turn == Turn::P1) turn = Turn::P2; else turn = Turn::P1;
@@ -193,7 +193,7 @@ void Game::Update() {
 
                 }
 
-                if (players[static_cast<std::size_t>(turn)].barriersCount > 0 && !BarriersCollideInArray<20>(mouse, barriers) && CanAccessLine<20>(players[0].pos, true, &PreviewAddBarrierInArray<20, 4>(barriers, players, mouse)[0]) && CanAccessLine<20>(players[1].pos, false, &PreviewAddBarrierInArray<20, 4>(barriers, players, mouse)[0])) {
+                if (players[static_cast<std::size_t>(turn)].barriersCount > 0 && !BarriersCollideInArray(mouse, barriers) && CanAccessLine(players[0].pos, true, &PreviewAddBarrierInArray(barriers, players, mouse)[0]) && CanAccessLine(players[1].pos, false, &PreviewAddBarrierInArray(barriers, players, mouse)[0])) {
 
                     barriers[20-players[0].barriersCount-players[1].barriersCount-players[2].barriersCount-players[3].barriersCount] = mouse;
                     players[static_cast<std::size_t>(turn)].barriersCount--;
@@ -229,37 +229,37 @@ void Game::Render() const {
     if (commands.select == SelectMode::PLAYERS) {
 
         SDL_SetRenderDrawColor(renderer, std::uint8_t{255}, std::uint8_t{0}, std::uint8_t{0}, std::uint8_t{255});
-        if (players[static_cast<std::size_t>(turn)].pos.x > 0 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-1), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
+        if (players[static_cast<std::size_t>(turn)].pos.x > 0 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-1), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
 
             SDL_Rect rect{Screen::width/9*(players[static_cast<std::size_t>(turn)].pos.x-1), Screen::height/9*players[static_cast<std::size_t>(turn)].pos.y, Screen::width/9, Screen::height/9};
-            if (CaseHasPlayer<4>(Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-1), players[static_cast<std::size_t>(turn)].pos.y}, players) && players[static_cast<std::size_t>(turn)].pos.x-1 > 0 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-2), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) rect.x -= Screen::width/9;
+            if (CaseHasPlayer(Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-1), players[static_cast<std::size_t>(turn)].pos.y}, players) && players[static_cast<std::size_t>(turn)].pos.x-1 > 0 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x-2), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) rect.x -= Screen::width/9;
 
             SDL_RenderFillRect(renderer, &rect);
 
         }
 
-        if (players[static_cast<std::size_t>(turn)].pos.x < 9 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+1), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
+        if (players[static_cast<std::size_t>(turn)].pos.x < 9 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+1), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) {
             
             SDL_Rect rect{Screen::width/9*(players[static_cast<std::size_t>(turn)].pos.x+1), Screen::height/9*players[static_cast<std::size_t>(turn)].pos.y, Screen::width/9, Screen::height/9};
-            if (CaseHasPlayer<4>(Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+1), players[static_cast<std::size_t>(turn)].pos.y}, players) && players[static_cast<std::size_t>(turn)].pos.x+1 < 9 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+2), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) rect.x += Screen::width/9;
+            if (CaseHasPlayer(Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+1), players[static_cast<std::size_t>(turn)].pos.y}, players) && players[static_cast<std::size_t>(turn)].pos.x+1 < 9 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.x+2), players[static_cast<std::size_t>(turn)].pos.y}, barriers)) rect.x += Screen::width/9;
 
             SDL_RenderFillRect(renderer, &rect);
 
         }
 
-        if (players[static_cast<std::size_t>(turn)].pos.y > 0 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-1)}, barriers)) {
+        if (players[static_cast<std::size_t>(turn)].pos.y > 0 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-1)}, barriers)) {
             
             SDL_Rect rect{Screen::width/9*players[static_cast<std::size_t>(turn)].pos.x, Screen::height/9*(players[static_cast<std::size_t>(turn)].pos.y-1), Screen::width/9, Screen::height/9};
-            if (CaseHasPlayer<4>(Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-1)}, players) && players[static_cast<std::size_t>(turn)].pos.y-1 > 0 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-2)}, barriers)) rect.y -= Screen::height/9;
+            if (CaseHasPlayer(Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-1)}, players) && players[static_cast<std::size_t>(turn)].pos.y-1 > 0 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y-2)}, barriers)) rect.y -= Screen::height/9;
 
             SDL_RenderFillRect(renderer, &rect);
 
         }
 
-        if (players[static_cast<std::size_t>(turn)].pos.y < 9 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+1)}, barriers)) {
+        if (players[static_cast<std::size_t>(turn)].pos.y < 9 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+1)}, barriers)) {
             
             SDL_Rect rect{Screen::width/9*players[static_cast<std::size_t>(turn)].pos.x, Screen::height/9*(players[static_cast<std::size_t>(turn)].pos.y+1), Screen::width/9, Screen::height/9};
-            if (CaseHasPlayer<4>(Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+1)}, players) && players[static_cast<std::size_t>(turn)].pos.y+1 < 9 && !CasesHasBarrier<20>(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+2)}, barriers)) rect.y += Screen::height/9;
+            if (CaseHasPlayer(Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+1)}, players) && players[static_cast<std::size_t>(turn)].pos.y+1 < 9 && !CasesHasBarrier(players[static_cast<std::size_t>(turn)].pos, Case{players[static_cast<std::size_t>(turn)].pos.x, static_cast<std::uint8_t>(players[static_cast<std::size_t>(turn)].pos.y+2)}, barriers)) rect.y += Screen::height/9;
 
             SDL_RenderFillRect(renderer, &rect);
 
@@ -341,7 +341,7 @@ void Game::Render() const {
 
         }
 
-        if (BarriersCollideInArray<20>(preview, barriers) || !CanAccessLine<20>(players[0].pos, true, &PreviewAddBarrierInArray<20, 4>(barriers, players, preview)[0]) || !CanAccessLine<20>(players[1].pos, false, &PreviewAddBarrierInArray<20, 4>(barriers, players, preview)[0])) SDL_SetRenderDrawColor(renderer, std::uint8_t{255}, std::uint8_t{0}, std::uint8_t{0}, std::uint8_t{100});
+        if (BarriersCollideInArray(preview, barriers) || !CanAccessLine(players[0].pos, true, &PreviewAddBarrierInArray(barriers, players, preview)[0]) || !CanAccessLine(players[1].pos, false, &PreviewAddBarrierInArray(barriers, players, preview)[0])) SDL_SetRenderDrawColor(renderer, std::uint8_t{255}, std::uint8_t{0}, std::uint8_t{0}, std::uint8_t{100});
 
         SDL_Rect rect{Screen::width/9*preview.pos.x, Screen::height/9*preview.pos.y, 0, 0};
 
